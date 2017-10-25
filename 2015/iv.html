@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+	<title>PV Analyzer</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="main">
+		<div class="header">
+			<div class="header_resize">
+				<div class="logo"><h1><a href="index.html">PV Analyzer<br><small>I-V Curve Tracer</small></a></h1></div>
+				<div class="menu_nav">
+					<ul>
+					  <li><a href="index.html">Home</a></li>
+					  <li><a href="objective.html">Objective</a></li>
+					  <li><a href="pv.html">PV Reference</span></span></a></li>
+					  <li class="active"><a href="iv.html">I-V Curve Tracer</a></li>
+					  <li><a href="future.html">Future</a></li>
+					  <li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+		
+		<div class="banner">
+			<div class="banner_resize">
+				<div class="banner_resize1"><img src="images/img1b.jpg" alt="Banner Image" /></div>
+				<div class="banner_resize2"><img src="images/img2c.jpg" alt="Banner Image" /></div>
+				<div class="banner_resize3"><img src="images/img3c.jpg" alt="Banner Image" /></div>
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="content_resize">
+				<div class="mainbar">
+					<h2>The I-V Curve Tracer</h2>
+					<p>This device is the main element of the system as it is the one that actually perform the measurements in the desired panel, make the calculations required to extrapolate the curve to STC conditions and stores the data. But it's not limited to that. The tracer uses a capacitive load to measure the current and voltage of a desired PV module to plot its I-V curve. </p>
+
+					<h3>Functional requirements</h3>
+					<p>The same way it was done in the PV reference, the researchers had to establish the minimum functional requirements the device must comply. The proposed device must:</p>
+					<ul>
+						<li>Support a maximum voltage of 100V. This will limit the VOC of the PV modules that can be measured, and it's a critical factor when sizing the capacitive load.</li>
+						<li>Support a maximum current of 10A. This will limit the ISC of the PV modules that can be measured and it's a critical factor when sizing the components of the power circuit, like, for example, the fuses.</li>
+						<li>Measure the open-circuit voltage value of the desired PV module.</li>
+						<li>Measure the short-circuit current value of the desired PV module. </li>
+						<li>Be able to receive the incoming data of the PV reference sensor. As it was explained, the PV reference sends the data using radio signals. This is done using a wireless shield. </li>
+						<li>Be able to make calculations of the extrapolation of the I-V curve. </li>
+						<li>Be an autonomous device, with its own power source. </li>
+						<li>Be able to store all the data measured, as well as the one calculated. This is done with and SD card storage device. </li>
+						<li>Be able to log the time and date of the measurements. This is done with a Real Time Clock. </li>
+						<li>Minimize the energy consumption, to increase the lifetime. </li>
+						<li>Provide accurate, precise and repeatable measurement results. </li>
+						<li>Be small in size.</li>
+						<li>Be light in weight.</li>
+						<li>Be low in cost.</li>
+						<li>Be safe to use. In the PV reference the magnitudes used were really low so there is no risk, but in this case 100V and 10A can be dangerous. This will have an impact in the insulation on the components.</li>
+						<li>Include the entire required elements in an enclosure that protects them from the environment and possible accidents.</li>
+					</ul>
+					<p>Although it was not initially a requirement, soon after the development started the researchers realized that the addition of a touch screen as a display and input device was really an important feature. As a result it was finally added to the device. This is important to understand some of the decisions made and its consequences because for example the addition of the display is a huge increase in the power consumption of the whole device. </p>
+						
+					<h3>Hardware components</h3>
+					<p>This section of the document aims to list and describe the elements used in the design of the I-V curve tracer. The components used are:</p>
+					<ul>
+						<li>A calibrated shunt resistor. Required to turn the short circuit current of the PV module into a voltage difference signal that can be measured on the Arduino ADC. In this case the relation of the shunt resistor was 10A = 60mV.</li>
+						<li>An Arduino DUE board.</li>
+						<li>A small PCB compatible with the Arduino board. This PCB is used to hold some of the signal circuits like the voltage divider of the PV module, the instrumental amplifier for the current of the PV module, an auxiliary voltage divider to measure the voltage of the capacitors, and PCB connectors required for wiring. </li>
+						<li>Two small auxiliary customized protoboards for wiring the RTC to the SPI bus.</li>
+						<li>An Arduino compatible Wireless shield. Used to receive the measurements from the PV reference sensor using radio signals under the Zigbee protocol. It includes an Xbee antenna. </li>
+						<li>An adapter PCB for the TFT LCD touchscreen for the Arduino DUE board. The TFT LCD touchscreen, with an SD card slot.</li>
+						<li>A lithium-ion battery, used as the main power supply for all of the electronics. It uses 12V and has a rated capacity of 4800 mAh. It is exactly the same model as the battery used in the PV reference sensor and the capacity test showed a similar value of 3200 mAh. It also includes its own charging device. </li>
+						<li>An external SD card storage device.</li>
+						<li>An accurate Real Time Clock model DS3231.</li>
+						<li>A capacitive load, made out of two capacitors model SIKOREL EPCOS 100V 4700uF, in parallel configuration.</li>
+						<li>A big power circuit PCB board which hold the three main power circuits and its signals circuits. This includes the discharge circuit, the negative pre-charge circuit, the measurement circuit, and all the logics used to activate them. </li>
+						<li>Two external resistors of 47? each, used to dissipate the energy of the capacitive load under the discharge circuit with its proper heat dissipaters.</li>
+						<li>A battery holder, to keep the two batteries used for the negative pre-charge fixed. </li>
+						<li>An on-off switch, a push button, wires, connectors, banana plugs.</li>
+						<li>Arduino DUE </li>
+					</ul>
+					<p>After the good results and capabilities of the Arduino UNO in the PV reference sensor, the researchers decided to go one step further with the incorporation of a TFT LCD touchscreen on the requirements of the I-V curve tracer. One of the implications of introducing this element was the requirement of a more powerful board like the Arduino MEGA or the Arduino DUE. Finally the decision to use the Arduino DUE was that the ADC of this board has 12 bits of resolution, instead of the 10 bits the MEGA has.</p>
+					
+					<div class="gallery">
+						<img src="images/ivfront.jpg" alt="Capactive load Front" >
+						<img src="images/ivinside.jpg" alt="Capactive load Inside" >
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="logos">
+			<div class="logos_resize">
+				<div class="logos_resize3"><a href="http://www.ies.upm.es"><img src="images/ieslogo.png"   alt="Banner Image" /></a></div>
+				<div class="logos_resize2"><a href="http://www.arduino.cc"><img src="images/arduinocom.png"   alt="Banner Image" /></a></div>
+				<div class="logos_resize1"><a href="http://www.uc3m.es"><img src="images/uc3mw.png"   alt="Banner Image" /></a></div>
+			</div>
+		</div>
+	
+		<div class="footer">
+			<div class="footer_resize">
+				<p class="lf">Designed by Sergio Espada Rubio @ <b>2015</b></p>
+				<div class="footer_nav">
+					<ul class="fmenu">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="objective.html">Objective</a></li>
+						<li><a href="pv.html">PV Reference</a></li>
+						<li class="active"><a href="iv.html">I-V Curve Tracer</a></li>
+						<li><a href="future.html">Future</a></li>
+						<li><a href="contact.html"><span>Contact</span></a></li>
+					</ul>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

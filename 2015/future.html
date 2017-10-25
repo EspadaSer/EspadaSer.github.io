@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+	<title>PV Analyzer</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="main">
+		<div class="header">
+			<div class="header_resize">
+				<div class="logo"><h1><a href="index.html">PV Analyzer<br><small>I-V Curve Tracer</small></a></h1></div>
+				<div class="menu_nav">
+					<ul>
+					  <li><a href="index.html">Home</a></li>
+					  <li><a href="objective.html">Objective</a></li>
+					  <li><a href="pv.html">PV Reference</span></span></a></li>
+					  <li><a href="iv.html">I-V Curve Tracer</a></li>
+					  <li class="active"><a href="future.html">Future</a></li>
+					  <li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+		<div class="banner">
+			<div class="banner_resize">
+				<div class="banner_resize1"><img src="images/img1b.jpg" alt="Banner Image" /></div>
+				<div class="banner_resize2"><img src="images/img2c.jpg" alt="Banner Image" /></div>
+				<div class="banner_resize3"><img src="images/img3c.jpg" alt="Banner Image" /></div>
+			</div>
+		</div>
+						
+		<div class="content">
+			<div class="content_resize">
+				<div class="mainbar">
+					<h2>Future Work</h2>
+					<p>Although the PV Analyzer met its functional requirements, there are always features that can be added to greatly expand its capabilities. </p>
+					
+					<h3>Improved Measurement accuracy and Precision</h3>
+					<p>The accuracy and precision of the measurements were always a key factor of the project. The decision about changing from the Arduino UNO board to the Arduino Due was strictly related with the resolution of their analog to digital converter. Remember that the resolution of the Arduino due ADC is 12 bits (4096 values) while the resolution of the Arduino UNO is only 10 bits (1024 values), that's 4 times more resolution. </p>
+					<p>During the development there was a moment we had to decide if that resolution was good enough for the project. To make the decision an external ADC model MCP3304 was bought. This ADC has 13 bits of resolution (8192 values) in up to 8 different channels. Another important feature of the external ADC is the ability to set an external voltage as the ADC reference. </p>
+					<p>While the accuracy of the external ADC was better compared with the Arduino DUE, the tests showed that the increase in accuracy was not worth it. The reason behind this decision is that the addition of the external ADC to the system increases the space, the weight, the price and the power consumption of the system. Although these characteristics are not easy to compare the final decision taken was that one bit more of resolution was not worth it, as the resolution of the Arduino Due was good enough right now. However future projects may require higher resolution and thus an external ADC may be mandatory. </p>
+					<p>Another feature that can improve a lot the accuracy and precision of the ADC is the incorporation of two relays that allow changing the gain and the voltage divider used in the measurements circuit to adapt the size of them to the PV modules measured. This way there can be two different hardware configurations for each magnitude, one for the low values and one for the bigger ones. This will solve the issues with the accuracy the I-V curve tracer is facing when the current and the voltage are very low. </p>
+					
+					<h3>Hardware improvements</h3>
+					<p>Although the project was focusing on designing a PV analyzer as light and small as possible, the actual size is big if we take into consideration that it is a portable device the user is going to carry with his hands during the measurements. Because of this, and after proving that the technology works properly, it is proposed to make another iteration in the process of designing the PV analyzer, creating another electronics board that use smaller components (SMD components that are way smaller) to reduce the size as much as possible. For example the MOSFET transistors used in the PV analyzer can be changed with smaller ones that require less space on the board. </p>
+					
+					<h3>Further Reduce Power Consumption</h3>
+					<p>Power Consumption is a very important factor for a device like this. This is because the device is portable and aims for an autonomy as long as possible. The design tried to reduce the power consumption when it was possible. The element that uses more energy is, by far, the touchscreen. It was added because the capability it was adding was better than the downsides it has, and overall it was adding value to the PV analyzer. As a result the consumption of the PV analyzer is higher than what we initially expected, and this is an important issue to improve. 
+					For example a nice improvement will be to add a sleep routine in the code that deactivates the screen when it is not used for a certain amount of time, acting like a screensaver in a computer.</p>
+					
+					<h3>Design of a 3D Printed Enclosure</h3>
+					<p>During the development of the project there was a moment when we had to search for an enclosure for the devices. Although this seemed something trivial it turned out to be way difficult. As we were taking decisions concerning the hardware used, and thus the components of each device, the size and shape of the enclosure was changing. The first time we noticed this was when trying to find an enclosure for the PV reference. It was really hard to find a box with the perfect size to fit all the components in a space as small as possible. Finally the current black plastic box was found and turned out to be perfect. Sometime later we decided to remove some elements from the device, so right now there is more empty space inside of it. 
+					For the PV analyzer it was more difficult to find a box. In this case we had way more components that could be placed in different combinations to fit in the shape of a box. We didn't want a very tall box because we wanted to hold it as a book with the screen at the top, but the different cases available were too big or too small for that. Also we had to pay attention to the different materials used to build them, the prices, the ingress protection and even the purpose they were designed. The decision was very hard as the project is constantly changing.
+					As a result the design of a 3D printed enclosure is proposed. This way the case of the devices can be customized to the specific shape and size desired. This will improve the portability of the system as we can reduce the size, optimize the shape to make it stronger near the weak spots and add handlers where it is required. </p>
+					
+					<h3>Programming and software improvements</h3>
+					<p>Probably the part of the project that can face a bigger improvement is the software. The capabilities of the Arduino microcontroller to make calculations, the addition of the SD card as a storage device and the touchscreen as a display and also as an input peripheral like a keyboard, is a great combination that can fulfill basically any task. With this combination of elements we can make many improvements to the PV analyzer that are software based and do not really increase the assembly price of the device. These improvements can be especially convenient if we need to process the data measured by the analyzer.
+					For example, a nice feature will be adding different profiles with different settings that can be chosen in the field test to compare the data measured with the one provided by the manufactured on the display of the screen.  
+					Also it can be possible to make some software to determine common anomalies in the shape of the I-V curve and report it to the user.	There is also the possibility to add background images to the interface to look more professional and complete. 
+					We considered adding some improvements to the software, like the profiles and the settings but as these can be considered commodities they ended up in a second place.</p>
+					
+					<h3>Conclusion</h3>
+					<p>Since the beginning of the project, there have been a lot of decisions about what do add or not into the devices, and what elements should be used. Sometimes the decisions were not strictly looking for a better performance of the devices, but a good equilibrium between all the factors involved, like price, size, weight, etc.  During the development, the project has been evolving endlessly as there was always something new to try to check if it was a better option than the previous ones. Because of this, there are always new changes and improvements to be made. Although the system presented is fully operational and can achieve the goals stated in the definition of the project, it is expected that new goals, requirements and optimizations appear during its lifetime. As this system has been created to be used by the members of the Institute of Solar Energy (IES) it will probably keep evolving and furtherly improved in the following years. </p>
+
+					<img src="images/solarpanels4.jpg" alt="Solar Panels Image" width="910">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="logos">
+			<div class="logos_resize">
+				<div class="logos_resize3"><a href="http://www.ies.upm.es"><img src="images/ieslogo.png"   alt="Banner Image" /></a></div>
+				<div class="logos_resize2"><a href="http://www.arduino.cc"><img src="images/arduinocom.png"   alt="Banner Image" /></a></div>
+				<div class="logos_resize1"><a href="http://www.uc3m.es"><img src="images/uc3mw.png"   alt="Banner Image" /></a></div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="footer_resize">
+				<p class="lf">Designed by Sergio Espada Rubio @ <b>2015</b></p>
+				<div class="footer_nav">
+					<ul class="fmenu">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="objective.html">Objective</a></li>
+						<li><a href="pv.html">PV Reference</a></li>
+						<li><a href="iv.html">I-V Curve Tracer</a></li>
+						<li class="active"><a href="future.html">Future</a></li>
+						<li><a href="contact.html"><span>Contact</span></a></li>
+					</ul>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

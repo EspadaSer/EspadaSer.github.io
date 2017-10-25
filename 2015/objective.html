@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+	<title>PV Analyzer</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="main">
+		<div class="header">
+			<div class="header_resize">
+				<div class="logo"><h1><a href="index.html">PV Analyzer<br><small>I-V Curve Tracer</small></a></h1></div>
+				<div class="menu_nav">
+					<ul>
+					  <li><a href="index.html">Home</a></li>
+					  <li class="active"><a href="objective.html">Objective</a></li>
+					  <li><a href="pv.html">PV Reference</span></span></a></li>
+					  <li><a href="iv.html">I-V Curve Tracer</a></li>
+					  <li><a href="future.html">Future</a></li>
+					  <li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+		<div class="banner">
+			<div class="banner_resize">
+				<div class="banner_resize1"><img src="images/img1b.jpg" alt="Banner Image" /></div>
+				<div class="banner_resize2"><img src="images/img2c.jpg" alt="Banner Image" /></div>
+				<div class="banner_resize3"><img src="images/img3c.jpg" alt="Banner Image" /></div>
+			</div>
+		</div>
+						
+		<div class="content">
+			<div class="content_resize">
+				<div class="mainbar">
+					<h2>Objective</h2>
+					<p>The main goal of this project is to design, assemble, test and optimize a PV analyzer and I-V curve tracer device to check the performance of photovoltaic solar systems. The device must be able to measure the I-V curve of a PV module with enough accuracy (aiming for a 1% total added error on the measurements). </p>
+					<p>The device also has to fulfill some other characteristics: It has to be as autonomous as possible; it has to be portable with enough lifetime to make the measurements; it has to be able to turn the real measurement values into STC (standard test conditions) using the norm UNE-EN60891 to make use of them; and of course it must be as cheap as possible. </p>
+					<p>For this purpose it was decided to use the capabilities of the Arduino microcontrollers to build a device that achieve all the required characteristics. Arduino is an open source platform spread all around the world that provides a lot of flexibility while keeping thing easy with a great community and powerful enough. It is especially relevant in the goal to keep the costs of the project as low as possible, as the devices used are typically mass produced to decrease the costs. </p>
+					<p>After we decided to use Arduino for the device and making some feasibility testings, we decided to divide the system into two different devices. The first system is a PV reference sensor and it is used to measure the irradiance and temperature of the cells and send the data to the main device using radio signals. The second device is the PV analyzer and I-V curve tracer that make use of a capacitive load to measure the voltage and current of the desired PV module and turn the data into STC conditions using the information received from the other device. </p>
+					<p>This configuration allows us to set up the PV reference sensor in a static place to measure the irradiance and temperature, while the user performs the measurements with only the PV analyzer. This increases the speed of the measurements and thus the efficiency of the process, as we don't have to relocate the calibrated solar cells of the reference every time we want to measure. It also allows us to decrease the weight of the PV analyzer, improving the portability of it. </p>
+					<p>The communication of the system is done using wireless technology under the Zigbee protocol. This technology uses radio signals to send unidirectional information from the reference sensor to the PV analyzer. The analyzer receives the data passively and when a measurement is done it stores and uses the received data received in order to make the extrapolation of the I-V curve.</p>
+					<p>The final result is the I-V and P-V curve of the PV module under STC conditions, where we can easily find the values of short-circuit current (Isc), open-circuit voltage (Voc) and the  maximum power point (Mpp).</p>
+					<p>All the data collected can be used to check if the performance of the PV module is correct as well as to check if there are problems in the modules itself, like mismatch or an accelerated degradation of the panels. </p>
+				</div>
+			</div>
+		</div>
+		<div class="logos">
+			<div class="logos_resize">
+				<div class="logos_resize3"><a href="http://www.ies.upm.es"><img src="images/ieslogo.png"   alt="Banner Image" /></a></div>
+				<div class="logos_resize2"><a href="http://www.arduino.cc"><img src="images/arduinocom.png"   alt="Banner Image" /></a></div>
+				<div class="logos_resize1"><a href="http://www.uc3m.es"><img src="images/uc3mw.png"   alt="Banner Image" /></a></div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="footer_resize">
+				<p class="lf">Designed by Sergio Espada Rubio @ <b>2015</b></p>
+				<div class="footer_nav">
+					<ul class="fmenu">
+						<li><a href="index.html">Home</a></li>
+						<li class="active"><a href="objective.html">Objective</a></li>
+						<li><a href="pv.html">PV Reference</a></li>
+						<li><a href="iv.html">I-V Curve Tracer</a></li>
+						<li><a href="future.html">Future</a></li>
+						<li><a href="contact.html"><span>Contact</span></a></li>
+					</ul>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

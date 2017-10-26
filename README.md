@@ -11,7 +11,7 @@ You can visit my Project Index in the following link:
 
 ### LinkedIn Profile
 
-https://www.linkedin.com/in/sergio-espada/?locale=en_US
+* [https://www.linkedin.com/in/sergio-espada/](https://www.linkedin.com/in/sergio-espada/?locale=en_US)
 
 ## Source
 

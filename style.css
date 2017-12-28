@@ -283,16 +283,20 @@ li.repo h3 {
   }
   
   #main {
+	text-align: center;
     width: 100%;
     display: inline-block;
     float: none;
-    height: auto;
-    padding-bottom: 20px;
+    height: 250px;
     margin: 0 auto 20px;
   }
   
   #logo {
-    margin: 15px auto;
+    width: 150px;
+	height: 150px;
+	margin: 50px 0 0 35px;
+	background: url("images/ser150.png");
+	text-indent: -99999px;
   }
   
   .grid .grid-2 {
@@ -322,22 +326,3 @@ li.repo h3 {
   }
 }
 
-@media screen and (max-width: 730px) {
-  li.repo {
-    min-width: 49%;
-  }
-}
-
-@media screen and (max-width: 530px) {
-  .grid .grid-3 {
-    flex-direction: column;
-  }
-  
-  .grid .grid-1,
-  .grid .grid-2 {
-    width: 100%;
-    margin-right: 0;
-    margin-left: 0;
-  }
-
-}

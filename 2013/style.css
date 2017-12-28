@@ -15,7 +15,7 @@ a { color:#81b436; text-decoration:underline;}
 
 
 /* header */
-.header { height:140px; background:url(images/header_bg.gif) repeat-x top;}
+.header { height:140px; background:url(images/header_bg.png) repeat-x top;}
 .header .logo { padding-top:24px; float:left;}
 
 /* menu */
@@ -49,7 +49,7 @@ ul.ex_menu li a:hover { text-decoration:none;}
 
 
 /* fbg */
-.fbg { background:#7baf30 url(images/fbg_bg.gif) repeat-x top;}
+.fbg { background:#7baf30 url(images/fbg_bg.png) repeat-x top;}
 .fbg_resize { padding:0 0 16px 40px; width:930px;}
 .fbg, .fbg a, .fbg h2 { color:#fff;}
 .fbg img { border:1px solid #77a239;}

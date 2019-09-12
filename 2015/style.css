@@ -30,7 +30,7 @@ ul.fmenu li a:hover, ul.fmenu li.active a, .menu_nav ul li.active a, .menu_nav u
 .menu_nav { padding:12px 12px 12px 0; float:right; width:auto; border:1px solid #3f83c0; border-top:none; background-color:#1566b2;}
 .menu_nav { border-bottom-right-radius:16px; -moz-border-radius-bottomright:16px; -webkit-border-bottom-right-radius:16px; border-bottom-left-radius:16px; -moz-border-radius-bottomleft:16px; -webkit-border-bottom-left-radius:16px;}
 .menu_nav ul { list-style:none;}
-.menu_nav ul li { margin:0 0 0 12px; float:left; background:url(images/menu_bg.gif) no-repeat right center;}
+.menu_nav ul li { margin:0 0 0 12px; float:left; background:url(images/bg.gif) no-repeat right center;}
 .menu_nav ul li a { display:block; margin:0; padding:4px 12px; color:#fff; text-decoration:none; font-size:14px; font-weight:normal;}
 .menu_nav ul li.active a, .menu_nav ul li a:hover { color:#fff; background-color:#2475c1;}
 .menu_nav ul li a:hover {text-decoration:underline;}

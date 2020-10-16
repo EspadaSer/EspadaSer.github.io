@@ -36,7 +36,6 @@ ul.fmenu li a:hover, ul.fmenu li.active a, .menu_nav ul li.active a, .menu_nav u
 .menu_nav ul li a:hover {text-decoration:underline;}
 
 /* banner */
-.banner { }
 .banner_resize { display: flex; flex-wrap: wrap; justify-content: space-between;}
 .banner_resize1 { width:303px; padding:16px 16px 16px 16px; background-color:#1463b0; border:1px solid #3f83c0; }
 .banner_resize2 { width:264px; padding:16px 16px 16px 16px; background-color:#1463b0; border:1px solid #3f83c0; }
@@ -46,7 +45,6 @@ ul.fmenu li a:hover, ul.fmenu li.active a, .menu_nav ul li.active a, .menu_nav u
 /* content */
 .content { margin: 12px 0 0 0;}
 .content_resize { padding:12px 28px 28px 28px; width:910px; background-color:#1463b0; border:1px solid #3f83c0;}
-.content .mainbar { }
 .content .mainbar ul { margin-left:20px;}
 .content .mainbar img { border:0px solid #b6cee6; border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
 .content .mainbar .exceptionlinkedin img { margin: 0 0 0 380px; border:0px solid #b6cee6; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}

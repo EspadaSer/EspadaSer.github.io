@@ -163,7 +163,6 @@ li.repo {
 
 li.repo > a {
   display: block;
-  width: 100%;
   height: 100%;
   overflow: hidden;
   text-decoration: none;
@@ -273,6 +272,90 @@ li.repo h3 {
   overflow: hidden;
 }
 
+@media screen and (min-width: 1000px) {
+  body {
+    min-width: inherit;  
+  }
+  
+  #main {
+	  text-align: center;
+    width: 100%;
+    display: inline-block;
+    float: none;
+    height: 250px;
+    margin: 0 auto 20px;
+  }
+  
+  #logo {
+    width: 150px;
+	height: 150px;
+	margin: 50px 0 0 35px;
+	background: url("images/ser150.png");
+	text-indent: -99999px;
+  }
+  .grid-1 {
+    display:inline;
+    float:left;
+  }
+  .grid .grid-2 {
+    margin-left:50px;
+    width:460px;
+    display:inline;
+    float:left;
+  }
+  
+  
+  .grid .grid-3 {
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #repos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  li.repo  {
+    width: 220px;
+    margin-right: 0;
+    display: block;
+    margin-left: 0;
+  }
+
+  .top1 {
+    display: inline-block; 
+    margin-top: 15px;
+  }
+
+  .top2 {
+    /* display: inline-block;  */
+    margin: 0px;
+  }
+
+  .top3 {
+    display: inline-block;
+    margin-top: 50px;
+  }
+  .ghmargin {
+    margin-left:10px;
+  }
+  .row31 {
+    margin-top: 30px;
+    vertical-align: baseline;
+    text-align: center;
+  }
+
+  .row32 {
+    margin-top: 30px;
+  }
+
+}
+
 @media screen and (max-width: 1000px) {
   body {
     min-width: inherit;  
@@ -298,11 +381,26 @@ li.repo h3 {
 	background: url("images/ser150.png");
 	text-indent: -99999px;
   }
-  
+  .grid-1 {
+    width: 20%;
+    display:inline;
+    float:left;
+  }
   .grid .grid-2 {
-    width: 80%;
+    
+    display:inline;
+    float:left;
   }
   
+  .grid-2 {
+    margin-left:50px;
+    
+    width:50%;
+  }
+  .grid-5 {
+    margin:auto;
+    width:20%;
+  }
   .grid .grid-3 {
     width: 100%;
     margin-left: 0;
@@ -324,5 +422,130 @@ li.repo h3 {
     display: inline-block;
     margin-left: 0;
   }
+
+  .top3 {
+    display: inline-block;
+    margin-top: 70px;
+    
+  }
+  .ghmargin {
+    margin-left:10px;
+  }
+  .row32 {
+    margin-top: 30px;
+  }
+
 }
 
+@media screen and (max-width: 730px) {
+ 
+  #main {
+    display: flex;
+    height: 320px;
+  }
+  #logo{
+    margin-left:13px;
+    display: inline-block;
+  }
+  .grid-1 {
+    width:35%;
+    
+  }
+  .grid-5 {
+    width:20%;
+    
+  }
+  .grid-2 {
+    margin:auto;
+    width:245px;
+  }
+  .top1 {
+    display: inline-block; 
+    margin-top: 50px;
+  }
+
+  .top2 {
+    
+    margin: 0px;
+  }
+
+  .top3 {
+    display: inline-block;
+    margin-top: 50px;
+    max-width: 115px;
+  }
+  .ghmargin {
+    margin-top:20px;
+    margin-left:0px;
+  }
+  .row31 {
+    margin-top: 30px;
+    vertical-align: baseline;
+    text-align: center;
+
+  }
+
+  .row32 {
+    margin-top: 30px;
+  }
+
+  li.repo {
+    min-width: 49%;
+  } 
+}
+
+@media screen and (max-width: 530px) {
+  
+  .grid-1 {
+    display: flex;
+    justify-content: center;
+  }
+ 
+  .grid-2 {
+    width:100%;
+    display: flex;
+    justify-content: center; 
+    
+  }
+
+  .grid-4 {
+    flex-direction: column;
+    min-width: 320px;
+  }
+
+  .grid-5 {
+    width:100%;
+    
+  }
+  
+  #logo{
+    margin:0
+  }
+
+  .top1 {
+    
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .top3 {
+    
+    margin-top: 10px;
+    
+  }
+  #repos {
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    min-width: 220px;
+  }
+
+  #main {
+    
+    height: 670px;
+  }
+  .center {
+    text-align: center;
+    list-style-position: inside;
+  }
+}

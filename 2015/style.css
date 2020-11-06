@@ -91,6 +91,7 @@ ul.fmenu li a:hover { text-decoration:underline;}
   -webkit-border-radius:16px;
   overflow: auto;
 }
+
 .grids{
   padding-left: 0px;
   display: flex; 
@@ -111,10 +112,12 @@ ul.fmenu li a:hover { text-decoration:underline;}
     width:910px; 
     height:250px;
   }
+
   .grid-1 {
     display:inline;
     float:left;
   }
+
   .grid-2 {width: 45%; }
   .logo2 {margin-top: 55px;}
   .grid-3 {margin-top:15px; margin-left: 10px;float: right;}
@@ -153,7 +156,6 @@ ul.fmenu li a:hover { text-decoration:underline;}
   .grid-2 {width:auto; float:none; display: inline-block; justify-content: center; margin-bottom:20px}
   .grid-3 {float:none; }
   .grid-3 a {width:auto; float:none; margin:auto ;display: block; text-align: center;justify-content: center; }
-
 }
 
 @media screen and (max-width: 530px) {
@@ -162,9 +164,7 @@ ul.fmenu li a:hover { text-decoration:underline;}
   .menu_nav { width:120; max-height:210px; display:flex; justify-content: center }
   .clr{width:20px}
   .footer_resize { width:90% }
-  
   .grid-1 {width:auto; margin:auto; text-align: center; display: flex;    }
   .grid-2 {width:auto; float:none; display: inline-block; justify-content: center;}
   .grid-3 a {width:auto; float:none; margin:auto ;display: block; text-align: center; justify-content: center; }
-   
 }

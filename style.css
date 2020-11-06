@@ -288,22 +288,23 @@ li.repo h3 {
   
   #logo {
     width: 150px;
-	height: 150px;
-	margin: 50px 0 0 35px;
-	background: url("images/ser150.png");
-	text-indent: -99999px;
+    height: 150px;
+    margin: 50px 0 0 35px;
+    background: url("images/ser150.png");
+    text-indent: -99999px;
   }
+
   .grid-1 {
     display:inline;
     float:left;
   }
+
   .grid .grid-2 {
     margin-left:50px;
     width:460px;
     display:inline;
     float:left;
   }
-  
   
   .grid .grid-3 {
     width: 100%;
@@ -341,9 +342,11 @@ li.repo h3 {
     display: inline-block;
     margin-top: 50px;
   }
+
   .ghmargin {
     margin-left:10px;
   }
+
   .row31 {
     margin-top: 30px;
     vertical-align: baseline;
@@ -357,6 +360,7 @@ li.repo h3 {
 }
 
 @media screen and (max-width: 1000px) {
+
   body {
     min-width: inherit;  
   }
@@ -366,7 +370,7 @@ li.repo h3 {
   }
   
   #main {
-	text-align: center;
+	  text-align: center;
     width: 100%;
     display: inline-block;
     float: none;
@@ -376,31 +380,33 @@ li.repo h3 {
   
   #logo {
     width: 150px;
-	height: 150px;
-	margin: 50px 0 0 35px;
-	background: url("images/ser150.png");
-	text-indent: -99999px;
+    height: 150px;
+    margin: 50px 0 0 35px;
+    background: url("images/ser150.png");
+    text-indent: -99999px;
   }
+
   .grid-1 {
     width: 20%;
     display:inline;
     float:left;
   }
+
   .grid .grid-2 {
-    
     display:inline;
     float:left;
   }
   
   .grid-2 {
     margin-left:50px;
-    
     width:50%;
   }
+
   .grid-5 {
     margin:auto;
     width:20%;
   }
+
   .grid .grid-3 {
     width: 100%;
     margin-left: 0;
@@ -426,11 +432,12 @@ li.repo h3 {
   .top3 {
     display: inline-block;
     margin-top: 70px;
-    
   }
+
   .ghmargin {
     margin-left:10px;
   }
+
   .row32 {
     margin-top: 30px;
   }
@@ -443,29 +450,31 @@ li.repo h3 {
     display: flex;
     height: 320px;
   }
+
   #logo{
     margin-left:13px;
     display: inline-block;
   }
+
   .grid-1 {
     width:35%;
-    
   }
+
   .grid-5 {
     width:20%;
-    
   }
+
   .grid-2 {
     margin:auto;
     width:245px;
   }
+
   .top1 {
     display: inline-block; 
     margin-top: 50px;
   }
 
   .top2 {
-    
     margin: 0px;
   }
 
@@ -474,15 +483,16 @@ li.repo h3 {
     margin-top: 50px;
     max-width: 115px;
   }
+
   .ghmargin {
     margin-top:20px;
     margin-left:0px;
   }
+  
   .row31 {
     margin-top: 30px;
     vertical-align: baseline;
     text-align: center;
-
   }
 
   .row32 {
@@ -505,7 +515,6 @@ li.repo h3 {
     width:100%;
     display: flex;
     justify-content: center; 
-    
   }
 
   .grid-4 {
@@ -515,7 +524,6 @@ li.repo h3 {
 
   .grid-5 {
     width:100%;
-    
   }
   
   #logo{
@@ -523,16 +531,15 @@ li.repo h3 {
   }
 
   .top1 {
-    
     margin-left: auto;
     margin-right: auto;
     width: 100%;
   }
+
   .top3 {
-    
     margin-top: 10px;
-    
   }
+
   #repos {
     margin-top: 0px;
     display: flex;
@@ -541,9 +548,9 @@ li.repo h3 {
   }
 
   #main {
-    
     height: 670px;
   }
+
   .center {
     text-align: center;
     list-style-position: inside;

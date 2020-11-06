@@ -60,7 +60,7 @@ ul.fmenu li a:hover, ul.fmenu li.active a, .menu_nav ul li.active a, .menu_nav u
 .logos img{ border:0px solid #b6cee6; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;}
 
 /* footer */
-.footer { background:url(images/bg2.png) repeat-x bottom; padding-bottom:10px;}
+.footer { background:url(images/bg2.png) repeat-x bottom; padding-bottom:10px; }
 .footer_resize { margin:0 auto; padding:12,0,0,0; width:966px;}
 .footer p.lf { margin:0; padding:4px 12px; float:right; width:auto; line-height:36px;}
 .footer_nav { padding:12px 12px 12px 0; float:left; width:auto; border:1px solid #3f83c0; border-bottom:none; background-color:#1566b2;}

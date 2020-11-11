@@ -1,14 +1,14 @@
 
 @charset "utf-8";
-body { margin:0; padding:0; width:100%; color:#fff; font:normal 12px/1.8em Arial, Helvetica, sans-serif;}
+body { margin:0; padding:0; width:100%; color:#fff; font:normal 14px/1.8em Arial, Helvetica, sans-serif;}
 html, .main { padding:0; margin:0; background-color:#0056aa;}
-.clr { clear:both; padding:0; margin:0; width:100%; font-size:0px; line-height:0px;}
+.clr { clear:both; padding:0; margin:0; width:100%; font-size:12px; line-height:0px;}
 h1 { margin:0; padding:0; color:#fff; font:normal 36px/1.2em Arial, Helvetica, sans-serif;}
 h1 a, h1 a:hover { color:#fff; text-decoration:none;}
 h1 small { font:normal 13px/1.2em Arial, Helvetica, sans-serif;}
 h2 { font:bold 24px Arial, Helvetica, sans-serif; color:#fff; padding:8px 0; margin:8px 0;}
-h3 { font:bold Arial, Helvetica, sans-serif; }
-p { margin:8px 0; padding:0 0 8px 0; font:normal 12px/1.8em Arial, Helvetica, sans-serif; text-align: justify;}
+h3 { font:bold 20px Arial, Helvetica, sans-serif; }
+p { margin:8px 0; padding:0 0 8px 0; font:normal 14px/1.8em Arial, Helvetica, sans-serif; text-align: justify;}
 a { color:#fff; text-decoration:none;}
 a:hover { text-decoration:underline;}
 li {text-align: justify;}
@@ -67,7 +67,7 @@ ul.fmenu li a:hover, ul.fmenu li.active a, .menu_nav ul li.active a, .menu_nav u
 .footer_nav { border-top-right-radius:16px; -moz-border-radius-topright:16px; -webkit-border-top-right-radius:16px; border-top-left-radius:16px; -moz-border-radius-topleft:16px; -webkit-border-top-left-radius:16px;}
 ul.fmenu { margin:0 0 0 12px; padding:2px 0; list-style:none; float:left; width:auto;}
 ul.fmenu li { margin:0; padding:0 4px; float:left;}
-ul.fmenu li a { text-decoration:none; padding:4px 12px; color:#fff;}
+ul.fmenu li a { font:normal 14px/1.8em Arial, Helvetica, sans-serif; text-decoration:none; padding:4px 12px; color:#fff;}
 ul.fmenu li a:hover, ul.fmenu li.active a { color:#fff; background-color:#2475c1;}
 ul.fmenu li a:hover { text-decoration:underline;}
 
@@ -110,7 +110,7 @@ ul.fmenu li a:hover { text-decoration:underline;}
 
   .content_resize2 {
     width:910px; 
-    height:250px;
+    height:270px;
   }
 
   .grid-1 {

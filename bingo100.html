@@ -180,10 +180,10 @@
     function iniciarAutoJuego() {
       if (!intervalo) {
         // Mostrar la primera operación al instante (o con 1s de retardo opcional)
-        setTimeout(() => mostrarOperacion(true), 1000);  
+        setTimeout(() => mostrarOperacion(false), 1000);  
 
         // Luego continuar cada 5 segundos
-        intervalo = setInterval(() => mostrarOperacion(true), 5000);
+        intervalo = setInterval(() => mostrarOperacion(false), 5000);
 
         output.innerText = "▶️ Auto-juego iniciado (una operación cada 5 segundos)";
       }

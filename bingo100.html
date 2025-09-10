@@ -14,9 +14,18 @@
     }
     h1 {
       color: #fff;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     }
+
+    /* Contenedor de mensajes temporales */
+    #mensajes {
+      min-height: 30px;
+      margin-bottom: 15px;
+      color: white;
+      font-size: 18px;
+    }
+
     .buttons {
       margin-bottom: 20px;
     }
@@ -30,9 +39,7 @@
       transition: transform 0.2s, background 0.3s;
       font-weight: bold;
     }
-    button:hover {
-      transform: scale(1.1);
-    }
+    button:hover { transform: scale(1.1); }
     .btn-op-res { background-color: #4CAF50; color: white; }
     .btn-op-only { background-color: #FF9800; color: white; }
     .btn-list { background-color: #2196F3; color: white; }
@@ -49,7 +56,6 @@
       max-width: 600px;
       min-height: 60px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      font-size: 22px;
       font-weight: bold;
       color: #333;
       margin: 20px auto;
@@ -59,7 +65,7 @@
     /* Cartón estilo bingo */
     #carton-container {
       margin-top: 20px;
-      display: none; /* oculto al inicio */
+      display: none;
     }
     #carton {
       display: grid;
@@ -87,9 +93,16 @@
 </head>
 <body>
   <h1>🎲 Bingo de las Multiplicaciones</h1>
-  
+
+  <!-- Contenedor para mensajes temporales -->
+  <div id="mensajes"></div>
+
   <div id="output">Haz clic en un botón para comenzar...</div>
-  
+  <div id="carton-container" style="display:none;">
+    <h2 style="color:white;">Cartón de resultados (1 a 100)</h2>
+    <div id="carton"></div>
+  </div>
+
   <div class="buttons">
     <button class="btn-op-res" id="btnRes">➕ Operación + resultado</button>
     <button class="btn-op-only" id="btnOp">✖️ Solo operación</button>
@@ -99,7 +112,7 @@
     <button class="btn-auto" id="btnAuto">▶️ Iniciar auto-juego</button>
     <button class="btn-stop" id="btnStop">⏹️ Detener auto-juego</button>
   </div>
-  
+
   <div id="carton-container">
     <h2 style="color:white;">Cartón de resultados (1 a 100)</h2>
     <div id="carton"></div>
@@ -109,6 +122,7 @@
     let lista = [];
     let intervalo = null;
     const output = document.getElementById("output");
+    const mensajes = document.getElementById("mensajes");
     const carton = document.getElementById("carton");
     const cartonContainer = document.getElementById("carton-container");
     const btnCarton = document.getElementById("btnCarton");
@@ -142,7 +156,11 @@
       if (conResultado) {
         texto += ` = ${value3}`;
       }
+
       output.innerText = texto;
+
+      // Ajustar tamaño de fuente al 20% del alto de la pantalla
+      output.style.fontSize = (window.innerHeight * 0.2) + "px";
 
       // Marcar número en el cartón si está en rango
       if (value3 >= 1 && value3 <= 100) {
@@ -154,46 +172,57 @@
     }
 
     function mostrarLista() {
-      output.innerText = "📋 Lista de resultados generados:\n" + lista.join(", ");
+      mostrarMensaje("📋 Lista de resultados generados:\n" + lista.join(", "), 5000);
     }
 
     function toggleCarton() {
-      if (cartonContainer.style.display === "none") {
-        cartonContainer.style.display = "block";
-        btnCarton.textContent = "🟥 Ocultar cartón";
-      } else {
-        cartonContainer.style.display = "none";
-        btnCarton.textContent = "🟩 Mostrar cartón";
-      }
+        if (cartonContainer.style.display === "none" || cartonContainer.style.display === "") {
+            cartonContainer.style.display = "block";
+            btnCarton.textContent = "🟥 Ocultar cartón";
+        } else {
+            cartonContainer.style.display = "none";
+            btnCarton.textContent = "🟩 Mostrar cartón";
+        }
     }
 
     function reiniciarJuego() {
       lista = [];
-      output.innerText = "🔄 Juego reiniciado. ¡Empieza de nuevo!";
+      mostrarMensaje("🔄 Juego reiniciado. ¡Empieza de nuevo!", 3000);
       detenerAutoJuego();
-      // Desmarcar todas las celdas
       for (let i = 1; i <= 100; i++) {
         document.getElementById("num-" + i).classList.remove("tachada");
       }
+      output.innerText = "";
     }
 
     function iniciarAutoJuego() {
-      if (!intervalo) {
-        // Mostrar la primera operación al instante (o con 1s de retardo opcional)
-        setTimeout(() => mostrarOperacion(false), 1000);  
+        if (!intervalo) {
+            // Primera operación tras 1 segundo, sin resultado
+            setTimeout(() => mostrarOperacion(false), 1000);
 
-        // Luego continuar cada 5 segundos
-        intervalo = setInterval(() => mostrarOperacion(false), 5000);
+            // Luego cada 5 segundos sin resultado
+            intervalo = setInterval(() => mostrarOperacion(false), 5000);
 
-        output.innerText = "▶️ Auto-juego iniciado (una operación cada 5 segundos)";
-      }
+            // Mensaje permanente mientras auto-juego esté activo
+            mensajes.innerText = "▶️ Auto-juego iniciado (una operación cada 5 segundos)";
+        }
     }
 
     function detenerAutoJuego() {
-      if (intervalo) {
-        clearInterval(intervalo);
-        intervalo = null;
-        output.innerText = "⏹️ Auto-juego detenido";
+        if (intervalo) {
+            clearInterval(intervalo);
+            intervalo = null;
+            mostrarMensaje("⏹️ Auto-juego detenido", 3000);
+        }
+        }
+
+    // Función para mensajes temporales
+    function mostrarMensaje(texto, duracion = 3000) {
+      mensajes.innerText = texto;
+      if (duracion > 0) {
+        setTimeout(() => {
+          mensajes.innerText = "";
+        }, duracion);
       }
     }
 

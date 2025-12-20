@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo 90 - Generador</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --btn-color: #27ae60;
+            --bg-color: #f0f3f5;
+            --cell-bg: #ffffff;
+            --empty-bg: #d1d8e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            user-select: none;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #timestamp {
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: var(--btn-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px #1e8449;
+        }
+
+        button:active {
+            box-shadow: 0 2px #1e8449;
+            transform: translateY(2px);
+        }
+
+        .carton {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 3px;
+            background-color: #444;
+            border: 5px solid #444;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .celda {
+            background-color: var(--cell-bg);
+            aspect-ratio: 1.1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(18px, 6vw, 32px);
+            font-weight: 800;
+            color: #333;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .celda.vacia {
+            background-color: var(--empty-bg);
+            cursor: default;
+        }
+
+        /* Marcado de tachado */
+        .celda.tachado::after {
+            content: "";
+            position: absolute;
+            width: 75%;
+            height: 75%;
+            background-color: rgba(231, 76, 60, 0.4);
+            border: 3px solid var(--accent-color);
+            border-radius: 50%;
+        }
+
+        /* Alerta personalizada */
+        #mensaje-bingo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 100px rgba(0,0,0,0.5);
+            text-align: center;
+            z-index: 100;
+            display: none;
+            border: 5px solid var(--btn-color);
+        }
+
+        #mensaje-bingo h2 { margin: 0; font-size: 40px; color: var(--btn-color); }
+        #overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.5); display: none; z-index: 99;
+        }
+
+        @media print { .header-container { display: none; } }
+    </style>
+</head>
+<body>
+
+    <h1>Bingo Online</h1>
+    
+    <div class="header-container">
+        <button onclick="generarNuevoCarton()">¡Nuevo Cartón!</button>
+        <span id="timestamp"></span>
+    </div>
+
+    <div id="carton-container"></div>
+
+    <div id="overlay" onclick="cerrarMensaje()"></div>
+    <div id="mensaje-bingo">
+        <h2 id="texto-aviso">¡BINGO!</h2>
+        <p>Toca para continuar</p>
+    </div>
+
+    <script>
+        let lineasCantadas = 0;
+
+        function generarNuevoCarton() {
+            lineasCantadas = 0;
+            const container = document.getElementById('carton-container');
+            const timeDisplay = document.getElementById('timestamp');
+            
+            const ahora = new Date();
+            timeDisplay.textContent = "Generado: " + ahora.toLocaleTimeString();
+
+            container.innerHTML = '';
+            const matriz = crearEstructuraCarton();
+            dibujarCarton(matriz, container);
+        }
+
+        function crearEstructuraCarton() {
+            let matriz = Array.from({ length: 3 }, () => Array(9).fill(0));
+            const columnas = Array.from({ length: 9 }, (_, i) => {
+                let min = i * 10 || 1;
+                let max = i === 8 ? 90 : i * 10 + 9;
+                let nums = [];
+                for (let n = min; n <= max; n++) nums.push(n);
+                return nums.sort(() => Math.random() - 0.5);
+            });
+
+            for (let c = 0; c < 9; c++) matriz[Math.floor(Math.random() * 3)][c] = columnas[c].pop();
+
+            let total = 9;
+            while (total < 15) {
+                let f = Math.floor(Math.random() * 3), c = Math.floor(Math.random() * 9);
+                if (matriz[f][c] === 0 && matriz[f].filter(n => n !== 0).length < 5) {
+                    matriz[f][c] = columnas[c].pop();
+                    total++;
+                }
+            }
+
+            for (let c = 0; c < 9; c++) {
+                let colNums = [];
+                for (let f = 0; f < 3; f++) if (matriz[f][c] !== 0) colNums.push(matriz[f][c]);
+                colNums.sort((a, b) => a - b);
+                let idx = 0;
+                for (let f = 0; f < 3; f++) if (matriz[f][c] !== 0) matriz[f][c] = colNums[idx++];
+            }
+            return matriz;
+        }
+
+        function dibujarCarton(matriz, container) {
+            const divCarton = document.createElement('div');
+            divCarton.className = 'carton';
+            divCarton.id = 'carton-actual';
+
+            for (let f = 0; f < 3; f++) {
+                for (let c = 0; c < 9; c++) {
+                    const celda = document.createElement('div');
+                    celda.className = 'celda';
+                    if (matriz[f][c] === 0) {
+                        celda.classList.add('vacia');
+                    } else {
+                        celda.textContent = matriz[f][c];
+                        celda.dataset.fila = f;
+                        celda.onclick = function() {
+                            this.classList.toggle('tachado');
+                            verificarPremios();
+                        };
+                    }
+                    divCarton.appendChild(celda);
+                }
+            }
+            container.appendChild(divCarton);
+        }
+
+        function verificarPremios() {
+            const filas = [0, 1, 2];
+            let filasCompletadas = 0;
+
+            filas.forEach(f => {
+                const celdasFila = document.querySelectorAll(`.celda[data-fila="${f}"]`);
+                const tachadas = Array.from(celdasFila).filter(c => c.classList.contains('tachado')).length;
+                if (tachadas === 5) filasCompletadas++;
+            });
+
+            if (filasCompletadas === 3) {
+                mostrarAviso("¡BINGO!");
+            } else if (filasCompletadas > lineasCantadas) {
+                lineasCantadas = filasCompletadas;
+                mostrarAviso("¡LÍNEA!");
+            }
+        }
+
+        function mostrarAviso(texto) {
+            document.getElementById('texto-aviso').textContent = texto;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('mensaje-bingo').style.display = 'block';
+        }
+
+        function cerrarMensaje() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('mensaje-bingo').style.display = 'none';
+        }
+
+        window.onload = generarNuevoCarton;
+    </script>
+</body>
+</html>

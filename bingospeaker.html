@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Speaker</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e74c3c;
+            --bg: #f4f7f6;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #display-numero {
+            font-size: clamp(7rem, 25vw, 15rem);
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+            line-height: 1.1;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .settings { 
+            margin-bottom: 20px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 0 20px;         /* Ajustamos padding lateral, el vertical lo dará el height */
+            height: 48px;            /* Altura fija para que todos sean idénticos */
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            margin: 5px;
+            font-weight: bold;
+            transition: all 0.2s;
+            color: white;
+            
+            /* Estas 3 líneas son la clave */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-start { background-color: var(--success); }
+        .btn-pause { background-color: var(--warning); }
+        .btn-reset { background-color: var(--accent); }
+        .btn-toggle { background-color: #7f8c8d; }
+        
+        button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        .hidden { display: none !important; }
+
+        /* Cuadrícula de 9 Columnas x 10 Filas */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr); 
+            grid-template-rows: repeat(10, 1fr);
+            grid-auto-flow: column; /* Esto hace que rellene hacia abajo antes de pasar a la siguiente columna */
+            gap: 8px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .num-ball {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eee;
+            border-radius: 50%;
+            font-size: clamp(0.8rem, 4.5vw, 2.4rem);
+            font-weight: bold;
+            color: #bbb;
+            transition: all 0.3s ease;
+        }
+
+        .num-ball.active {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.15);
+            box-shadow: 0 0 10px rgba(231, 76, 60, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .grid { gap: 4px; padding: 10px; }
+            .num-ball { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 style="color: var(--primary)">BINGO Speaker</h1>
+    <div id="display-numero">--</div>
+
+    <div class="controls">
+        <div class="settings">
+            <div>
+                <label>Espera (seg): </label>
+                <input type="number" id="intervalo" value="3" min="3" style="width: 50px; padding: 5px;">
+            </div>
+            <button id="toggleBtn" class="btn-toggle">👁️ Ver/Ocultar Tablero</button>
+        </div>
+        
+        <button id="startBtn" class="btn-start">▶ Iniciar</button>
+        <button id="pauseBtn" class="btn-pause" disabled>⏸ Pausar</button>
+        <button id="resetBtn" class="btn-reset">⏹ Reiniciar</button>
+    </div>
+
+    <div id="panel-tablero">
+        <div class="grid" id="bingoGrid">
+            </div>
+    </div>
+</div>
+
+<script>
+    let numerosDisponibles = Array.from({length: 90}, (_, i) => i + 1);
+    let timeoutId = null;
+    let juegoActivo = false;
+
+    const display = document.getElementById('display-numero');
+    const grid = document.getElementById('bingoGrid');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const inputIntervalo = document.getElementById('intervalo');
+
+    // Generar el tablero con la lógica de 9 columnas (1-10, 11-20...)
+    function generarTablero() {
+        grid.innerHTML = '';
+        // Al usar grid-auto-flow: column, simplemente añadimos del 1 al 90
+        // y CSS los acomodará 10 por cada una de las 9 columnas.
+        for (let i = 1; i <= 90; i++) {
+            const div = document.createElement('div');
+            div.className = 'num-ball';
+            div.id = `num-${i}`;
+            div.textContent = i;
+            grid.appendChild(div);
+        }
+    }
+
+    generarTablero();
+
+    function hablar(texto) {
+        return new Promise((resolve) => {
+            const msj = new SpeechSynthesisUtterance(texto);
+            msj.lang = 'es-ES';
+            msj.rate = 0.9;
+            msj.onend = resolve;
+            msj.onerror = resolve; 
+            window.speechSynthesis.speak(msj);
+        });
+    }
+
+    async function proximoNumero() {
+        if (!juegoActivo || numerosDisponibles.length === 0) {
+            if (numerosDisponibles.length === 0) {
+                await hablar("Fin del juego");
+            }
+            return;
+        }
+
+        const index = Math.floor(Math.random() * numerosDisponibles.length);
+        const n = numerosDisponibles.splice(index, 1)[0];
+
+        display.textContent = n;
+        const ball = document.getElementById(`num-${n}`);
+        if(ball) ball.classList.add('active');
+
+        await hablar(n.toString());
+        await new Promise(r => setTimeout(r, 1000)); // Espera de 1 segundo solicitada
+        
+        const digitos = n.toString().split('').join(' ');
+        await hablar(digitos);
+
+        const tiempoEspera = parseInt(inputIntervalo.value) * 1000;
+        timeoutId = setTimeout(proximoNumero, tiempoEspera);
+    }
+
+    startBtn.onclick = () => {
+        window.speechSynthesis.getVoices();
+        juegoActivo = true;
+        startBtn.disabled = true;
+        pauseBtn.disabled = false;
+        proximoNumero();
+    };
+
+    pauseBtn.onclick = () => {
+        juegoActivo = false;
+        if (timeoutId) clearTimeout(timeoutId);
+        startBtn.disabled = false;
+        pauseBtn.disabled = true;
+        startBtn.textContent = "▶ Reanudar";
+    };
+
+    document.getElementById('resetBtn').onclick = () => {
+        if (confirm("¿Deseas reiniciar la partida?")) {
+            location.reload();
+        }
+    };
+
+    document.getElementById('toggleBtn').onclick = () => {
+        document.getElementById('panel-tablero').classList.toggle('hidden');
+    };
+</script>
+
+</body>
+</html>

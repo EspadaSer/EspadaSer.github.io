@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="LinkedIn (enlace)">
+<g transform="rotate(-4 32 32)">
+  <rect x="4" y="14" width="56" height="36" rx="18" fill="#7FC8FF" stroke="#243049" stroke-width="3.2"/>
+  <circle cx="50" cy="21" r="3" fill="#fff" opacity=".7"/>
+  <g stroke="#243049" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="21" cy="26" r="3.2" fill="#243049" stroke="none"/>
+    <path d="M19.5 33v10" />
+    <path d="M29 43V33" />
+    <path d="M29 38c1.8-3.5 4.4-5 7.5-5 4 0 5.8 2.5 5.8 6.5V43" fill="none"/>
+  </g>
+  <g>
+    <circle cx="52" cy="44" r="8.5" fill="#fff" stroke="#243049" stroke-width="2.8"/>
+    <path d="M49 47l6-6M50 41h5v5" fill="none" stroke="#243049" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</g>
+</svg>

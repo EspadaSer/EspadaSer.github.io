@@ -1,109 +1,219 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proyectos · Sergio Espada</title>
+<meta name="theme-color" content="#0b1020">
+<style>
+  :root{
+    --bg:#0b1020;
+    --surface:rgba(255,255,255,.045);
+    --surface-2:rgba(255,255,255,.075);
+    --border:rgba(255,255,255,.10);
+    --text:#e8ecf8;
+    --muted:#9aa4c0;
+    --accent:#6ea8fe;
+    --radius:15px;
+    --mono:ui-monospace,SFMono-Regular,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;min-height:100vh;color:var(--text);
+    font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;line-height:1.55;
+    background:
+      radial-gradient(900px 480px at 10% -12%,rgba(110,168,254,.16),transparent 62%),
+      radial-gradient(700px 460px at 92% -6%,rgba(244,114,182,.10),transparent 62%),
+      var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:min(1120px,100% - 40px);margin:0 auto}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-<html>
-  <head>
-	  <meta name="description" content="Summary of the personal projects of Sergio Espada Rubio. Each card represents a separate project, sorted by date and including a short description and a link to the related website" />
-	  <meta name="keywords" content="sergio, espada, rubio, electrical, engineer, projects, personal, energy, experience, github" />
-	  <meta http-equiv="Content-Language" content="en-es"/>
-	  <meta name="distribution" content="global"/>
-	  <meta name="Robots" content="all"/>
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0;">
-	  <link rel="canonical" href="https://espadaser.github.io/" />
-	  
-	  <!-- BING META TAG --> 
-	  <meta name="msvalidate.01" content="02C15EEB4ECE028941087DC660471379" />
-	  
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118987878-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+  /* Explore: cabecera compacta, columns fijas sin hueco artificial */
+  .masthead{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:18px 22px;padding:24px 0 20px;border-bottom:1px solid var(--border)}
+  .avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:1px solid var(--border)}
+  .masthead h1{font-size:1.28rem;letter-spacing:-.02em;margin:0 0 4px;font-weight:650;text-wrap:balance}
+  .masthead p{margin:0;color:var(--muted);font-size:.84rem;max-width:80ch;text-wrap:pretty}
+  .links{display:flex;gap:10px;align-items:center;justify-self:end}
+  .links a{display:block;line-height:0;border-radius:12px;transition:transform .18s,filter .18s}
+  .links a:hover{transform:translateY(-2px);filter:brightness(1.12)}
+  .links img{width:72px;height:72px;display:block}
 
-	  gtag('config', 'UA-118987878-1');
-	</script>
-	  
-    <title>Sergio Espada Rubio - Personal Projects</title>
-	<link href="style.css" rel="stylesheet" type="text/css" />
-	<link href="grid.css" rel="stylesheet" type="text/css" />
-	<link href="reset.css" rel="stylesheet" type="text/css" />
-	  
-  </head>
-  <body>
-  
-    <div id="wrapper" class="grid clearfix">
-		<ol id="main" class="center row grid grid-4">
-			
-			<li class="column grid-1 top1">
+  /* Barra de trabajo */
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;padding:20px 0 18px}
+  .search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:6px 9px;min-width:260px}
+  .search svg{width:15px;height:15px;fill:none;stroke:var(--muted);stroke-width:2}
+  .search input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--text);font:inherit;font-size:.9rem;padding:4px 0}
+  .search input::placeholder{color:var(--muted)}
+  .search input::-webkit-search-cancel-button{display:none}
+  .clear{cursor:pointer;border:0;background:rgba(255,255,255,.09);color:var(--text);border-radius:999px;width:24px;height:24px;line-height:1;font-size:17px;padding:0;display:grid;place-items:center}
+  .clear:hover{background:var(--accent);color:#0b1020}
+  .clear[hidden]{display:none}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{cursor:pointer;font:inherit;font-size:.8rem;font-weight:600;color:var(--muted);background:transparent;border:1px solid var(--border);padding:7px 13px;border-radius:999px;transition:color .18s,border-color .18s,background .18s}
+  .chip:hover{color:var(--text);border-color:var(--accent)}
+  .chip[aria-pressed="true"]{color:#0b1020;background:var(--accent);border-color:var(--accent)}
+  .sort{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.8rem}
+  .sort select{font:inherit;font-size:.82rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 9px}
+  #count{font-family:var(--mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
 
-				<div id="logo">ser.png</div>
+  /* Catálogo: flex para centrar dinámicamente la última fila sin agrandar tarjetas */
+  .grid{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding-bottom:48px}
+  .card{flex:0 0 calc((100% - 45px)/4);position:relative;display:flex;flex-direction:column;min-height:236px;padding:21px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .2s,border-color .2s,background .2s}
+  .card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c);opacity:.9}
+  .card:hover,.card:focus-within{transform:translateY(-3px);background:var(--surface-2);border-color:color-mix(in srgb,var(--c) 55%,transparent)}
+  .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;color:var(--c);background:color-mix(in srgb,var(--c) 15%,transparent);border:1px solid color-mix(in srgb,var(--c) 34%,transparent)}
+  .icon svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .year{font-family:var(--mono);font-size:.74rem;color:var(--muted);border:1px solid var(--border);padding:3px 9px;border-radius:999px}
+  .scope{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--c);font-weight:700}
+  .card h3{margin:0 0 8px;font-size:1.08rem;letter-spacing:-.015em}
+  .card p{margin:0 0 16px;color:var(--muted);font-size:.89rem;flex:1}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+  .tag{font-size:.7rem;color:var(--muted);background:rgba(255,255,255,.05);border-radius:6px;padding:3px 8px}
+  .go{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:.85rem;font-weight:700;color:var(--c)}
+  .go::after{content:"→";transition:transform .2s}
+  .go:hover::after{transform:translateX(5px)}
+  .go.disabled{color:var(--muted);opacity:.72;cursor:default}
+  .go.disabled::after{content:"·"}
+  .empty{flex:1 1 100%;padding:46px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:var(--radius)}
 
-			</li>
-			
-			<li id="description" class="column grid-2 shell top2">
-				
-				<h1>Sergio Espada Rubio</h1>
-				<p> Electrical engineer with experience in Research and Development of renewable energies, as well as control and construction of Oil&Gas projects.</p>
-				<br>
-				<p> Analytic thinking, sportsman and passionate about technology. Ease to teamwork thanks to the international and multiculural experience.</p>
-			
-			</li>
-			
-			<li  class="column grid-5 top3">
-				
-				<div class="row row31">
-					<a href="https://es.linkedin.com/in/sergio-espada"> <img src="images/linkedinicon.png" alt="linkedin icon"  >	</a>
-					<a href="https://github.com/EspadaSer"> <img src="images/githubiconblue.png" alt="github icon" class="ghmargin" > 	</a>
-				</div>
-				
-				<div class="row row32">
-					<img src="images/name13.png" alt="name" />
-					<img src="images/arroba13.png" alt="at" />
-					<img src="images/mail13.png" alt="domain" />
-				</div>
-										
-			</li>
-			
+  /* Pie minimalista: la línea solo dentro del ancho de contenido */
+  .site-foot{padding:0 0 30px}
+  .site-foot .wrap{border-top:1px solid var(--border);padding-top:22px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+  .site-foot img{display:block;border-radius:4px}
+  .copy{font-size:.78rem;color:var(--muted)}
 
-		</ol>
-	
-		<ol id="repos">
-			<li class="repo grid-6 shell">
-				<a href= "2013/index.html">
-					<h2> SwissKitePower </h2>
-					<h3> 2013 </h3>
-					<p> A collaborative research and development project focused on wind energy. </p>
-				</a>
-			</li>
-			
-			<li class="repo grid-6 shell">
-				<a href="2015/index.html">
-					<h2> PV Analyzer </h2>
-					<h3> 2015 </h3>
-					<p> Complete electrical test solution for verifying and troubleshooting photovoltaic array performance. </p>
-				</a>
-			</li>
-			
-			<li class="repo grid-6 shell">
-				<a href="index.html">
-					<h2> Time Domain Reflectometer </h2>
-					<h3> 2016 </h3>
-					<p> Prototype to measure cable length. </p>
-				</a>
-			</li>
-			
-			<li class="repo grid-6 shell">
-				<a href="index.html">
-					<h2> QS Software </h2>
-					<h3> 2017 </h3>
-					<p> Complete software solution for engineering measurements based on SmartPlant3D reports.  </p>
-				</a>
-			</li>
-			
-		</ol>
-	</div>
-	<p align="center">
-		<img align="center" src="https://profile-counter.glitch.me/espadaser/count.svg" alt="VisitorCount">
-	</p>
-  </body>
+  @media(max-width:1100px){.card{flex-basis:calc((100% - 30px)/3)}}
+  @media(max-width:800px){.card{flex-basis:calc((100% - 15px)/2)}}
+  @media(max-width:560px){.card{flex-basis:100%}}
+  @media(max-width:640px){
+    .masthead{grid-template-columns:auto minmax(0,1fr)}
+    .links{grid-column:1/-1;justify-self:start}
+    .sort{margin-left:0}
+    .search{min-width:100%}
+  }
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="i-kite" viewBox="0 0 24 24"><path d="M12 2 20 9l-8 6-8-6 8-7Z"/><path d="M4 9h16M12 2v13"/><path d="M12 15c0 3-2 4-2 7"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+    <symbol id="i-signal" viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></symbol>
+    <symbol id="i-cards" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="masthead">
+    <img class="avatar" src="assets/avatar.jpg" alt="Retrato de Sergio Espada">
+    <div class="who">
+      <h1>Sergio Espada Rubio</h1>
+      <p>Ingeniero eléctrico especializado en renovables e instrumentación. Convierto problemas de campo en herramientas de medición, datos claros y software útil.</p>
+    </div>
+    <nav class="links" aria-label="Enlaces externos">
+      <a href="https://github.com/EspadaSer" target="_blank" rel="noopener" aria-label="GitHub"><img src="links/github.svg" alt="GitHub"></a>
+      <a href="https://www.linkedin.com/in/sergio-espada/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="links/linkedin.svg" alt="LinkedIn"></a>
+    </nav>
+  </header>
+
+  <section aria-label="Catálogo de proyectos">
+    <div class="toolbar">
+      <label class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="q" type="search" placeholder="título, etiqueta, año…" autocomplete="off" aria-label="Buscar proyectos">
+        <button id="clear" class="clear" type="button" aria-label="Limpiar búsqueda" hidden>×</button>
+      </label>
+      <div class="chips" id="filters" role="group" aria-label="Filtrar por ámbito"></div>
+      <label class="sort">Orden
+        <select id="sort">
+          <option value="new">Más recientes</option>
+          <option value="old">Más antiguos</option>
+          <option value="az">Título A-Z</option>
+        </select>
+      </label>
+      <span id="count" aria-live="polite"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+</div>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=EspadaSer.github.io&amp;left_text=visitas&amp;left_color=595959&amp;right_color=6ea8fe&amp;logo=github" alt="Contador de visitas">
+    <span class="copy">© 2013 – <span id="year">2026</span> EspadaSer</span>
+  </div>
+</footer>
+
+<script src="projects.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const state={q:'',scope:'Todos',sort:'new'};
+  const grid=document.getElementById('grid');
+  const filters=document.getElementById('filters');
+  const count=document.getElementById('count');
+  const q=document.getElementById('q');
+  const clear=document.getElementById('clear');
+  const sort=document.getElementById('sort');
+  const scopes=['Todos','Profesional','Personal'];
+
+  function visible(){
+    const term=state.q.trim().toLowerCase();
+    let items=PROJECTS.filter(p=>{
+      const inScope=state.scope==='Todos'||p.scope===state.scope;
+      const hay=[p.title,p.description,p.category,p.year,...p.tags].join(' ').toLowerCase();
+      return inScope&&(!term||hay.includes(term));
+    });
+    return [...items].sort((a,b)=>
+      state.sort==='az'?a.title.localeCompare(b.title):
+      state.sort==='old'?a.year-b.year:b.year-a.year);
+  }
+
+  function render(){
+    const items=visible();
+    count.textContent=items.length+' / '+PROJECTS.length;
+    clear.hidden=q.value.length===0;
+    grid.innerHTML=items.length?items.map(p=>{
+      const link=p.link
+        ?`<a class="go" href="${BASE}${p.link}">Ver proyecto</a>`
+        :`<span class="go disabled">Sin web pública</span>`;
+      return `<article class="card" style="--c:${p.color}">
+        <div class="card-top">
+          <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-${p.icon}"></use></svg></span>
+          <span class="year">${p.year}</span>
+        </div>
+        <span class="scope">${p.scope} · ${p.category}</span>
+        <h3>${p.title}</h3>
+        <p>${p.description}</p>
+        <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        ${link}
+      </article>`;
+    }).join(''):`<div class="empty">No hay proyectos con esos filtros.</div>`;
+  }
+
+  scopes.forEach(scope=>{
+    const b=document.createElement('button');
+    b.className='chip';b.textContent=scope==='Profesional'?'Profesionales':scope==='Personal'?'Personales':scope;
+    b.setAttribute('aria-pressed',String(scope===state.scope));
+    b.addEventListener('click',()=>{
+      state.scope=scope;
+      document.querySelectorAll('.chip').forEach((x,i)=>x.setAttribute('aria-pressed',String(scopes[i]===scope)));
+      render();
+    });
+    filters.appendChild(b);
+  });
+  q.addEventListener('input',e=>{state.q=e.target.value;render()});
+  clear.addEventListener('click',()=>{q.value='';state.q='';q.focus();render()});
+  sort.addEventListener('change',e=>{state.sort=e.target.value;render()});
+  render();
+</script>
+</body>
 </html>

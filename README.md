@@ -3,7 +3,9 @@
 This repository is used as my personal website.
 You can visit my Project Index in the following link:
 
-* http://EspadaSer.github.io/
+* https://EspadaSer.github.io/
+
+![Visitas](https://visitor-badge.laobi.icu/badge?page_id=EspadaSer.github.io&left_text=visitas&left_color=595959&right_color=6ea8fe&logo=github)
 
 ## Author
 

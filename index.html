@@ -73,11 +73,8 @@
   .card p{margin:0 0 16px;color:var(--muted);font-size:.89rem;flex:1}
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
   .tag{font-size:.7rem;color:var(--muted);background:rgba(255,255,255,.05);border-radius:6px;padding:3px 8px}
-  .go{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:.85rem;font-weight:700;color:var(--c)}
-  .go::after{content:"→";transition:transform .2s}
-  .go:hover::after{transform:translateX(5px)}
-  .go.disabled{color:var(--muted);opacity:.72;cursor:default}
-  .go.disabled::after{content:"·"}
+  .card.linked{cursor:pointer;text-decoration:none;color:inherit}
+  .card.linked::after{content:"↗";position:absolute;right:16px;bottom:13px;font-size:1.4rem;line-height:1;color:var(--c)}
   .empty{flex:1 1 100%;padding:46px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:var(--radius)}
 
   /* Pie minimalista: la línea solo dentro del ancho de contenido */
@@ -182,10 +179,10 @@
     count.textContent=items.length+' / '+PROJECTS.length;
     clear.hidden=q.value.length===0;
     grid.innerHTML=items.length?items.map(p=>{
-      const link=p.link
-        ?`<a class="go" href="${BASE}${p.link}">Ver proyecto</a>`
-        :`<span class="go disabled">Sin web pública</span>`;
-      return `<article class="card" style="--c:${p.color}">
+      const linked=!!p.link;
+      const tag=linked?'a':'article';
+      const attrs=linked?` href="${BASE}${p.link}" aria-label="Abrir ${p.title}"`:'';
+      return `<${tag} class="card${linked?' linked':''}" style="--c:${p.color}"${attrs}>
         <div class="card-top">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-${p.icon}"></use></svg></span>
           <span class="year">${p.year}</span>
@@ -194,8 +191,7 @@
         <h3>${p.title}</h3>
         <p>${p.description}</p>
         <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-        ${link}
-      </article>`;
+      </${tag}>`;
     }).join(''):`<div class="empty">No hay proyectos con esos filtros.</div>`;
   }
 

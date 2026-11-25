@@ -8,3 +8,14 @@ FIRMA PARA GMAIL
 firma.txt es la versión de texto plano si Gmail no conserva estilos.
 firma-con-foto.html incluye tu avatar de GitHub incrustado; Gmail puede eliminar imágenes incrustadas.
 Las tres píldoras pequeñas se cargan desde tu propio sitio (espadaser.github.io/index/links/png/), ya subido a GitHub.
+
+EN AQUAMAIL (Android)
+
+1. Abre AquaMail y entra en el menú (tres líneas/puntos) > Settings.
+2. Toca la cuenta espadauni@gmail.com.
+3. Busca la opción Signature (a veces dentro de Account setup o Message composition).
+4. Actívala y pega el contenido de firma.txt:
+   https://espadaser.github.io/signature/firma.txt
+5. Guarda y prueba redactando un correo nuevo.
+
+Nota: AquaMail usa firma de texto en la mayoría de versiones. Si tu versión tiene una opción explícita de firma HTML, abre https://espadaser.github.io/signature/ en el navegador, copia todo y pégalo ahí; si aparecen etiquetas <table>, vuelve a la versión de texto.

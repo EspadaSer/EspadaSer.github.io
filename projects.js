@@ -65,7 +65,7 @@ const PROJECTS = [
     description: "Bingo interactivo para practicar las tablas de multiplicar de forma divertida.",
     icon: "dice",
     tags: ["Educación", "Interactivo"],
-    link: "bingo100.html",
+    link: "personal/bingo100.html",
     color: "#f472b6"
   },
   {
@@ -76,7 +76,7 @@ const PROJECTS = [
     description: "Complemento de voz que anuncia los números cantados durante el juego del bingo.",
     icon: "volume",
     tags: ["Voz", "Bingo"],
-    link: "bingospeaker.html",
+    link: "personal/bingospeaker.html",
     color: "#fb923c"
   },
   {
@@ -87,7 +87,7 @@ const PROJECTS = [
     description: "Genera cartones de bingo de 90 números listos para imprimir o compartir.",
     icon: "cards",
     tags: ["Bingo", "Generador"],
-    link: "cartonbingo.html",
+    link: "personal/cartonbingo.html",
     color: "#22d3ee"
   }
 ];

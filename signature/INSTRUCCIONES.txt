@@ -1,0 +1,10 @@
+FIRMA PARA GMAIL
+
+1. Abre firma.html en el navegador.
+2. Ctrl+A y Ctrl+C.
+3. Gmail -> Settings -> General -> Signature -> pega dentro del editor.
+4. Guarda cambios.
+
+firma.txt es la versión de texto plano si Gmail no conserva estilos.
+firma-con-foto.html incluye tu avatar de GitHub incrustado; Gmail puede eliminar imágenes incrustadas.
+Las tres píldoras pequeñas se cargan desde tu propio sitio (espadaser.github.io/index/links/png/), ya subido a GitHub.

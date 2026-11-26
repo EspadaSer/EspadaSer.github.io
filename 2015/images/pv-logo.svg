@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 48 48">
+  <title>pv-logo.svg</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <circle cx="36" cy="12" r="5.2" fill="none" stroke="#6ea8fe" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M36 3.2v2.4M36 18.4v2.4M27.2 12h2.4M42.4 12h2.4M29.8 5.8l1.7 1.7M40.5 16.5l1.7 1.7M42.2 5.8l-1.7 1.7M31.5 16.5l-1.7 1.7" fill="none" stroke="#6ea8fe" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1.316 22.541 C21.001 22.541 29.107 28.979 40.686 46.684" fill="none" stroke="#6ea8fe" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="25.724" cy="29.168" r="2.4" fill="#6ea8fe"/>
+  </g>
+</svg>

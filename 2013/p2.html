@@ -1,118 +1,72 @@
-<!DOCTYPE html PUBLIC>
-<html>
-
-	<head>
-		<title>SwissKitePower</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0;">
-		<link href="style.css" rel="stylesheet" type="text/css">
-	</head>
-	
-	<body>
-	<div class="main">
-		<div class="header">
-			<div class="header_resize">
-				<div class="logo">
-					<h1><a href="index.html">SwissKitePower</a></h1>
-				</div>
-				<div class="menu_nav">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="fhnw.html">FHNW</a></li>
-						<li><a href="p1.html">Power Line</a></li>
-						<li class="active"><a href="p2.html">First Simulation</a></li>
-					</ul>				
-					<ul>
-						<li><a href="p3.html">Second Simulation</a></li>					
-						<li><a href="p4.html">Validation</a></li>
-						<li><a href="uc3m.html">UC3M</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-					<div class="clr"></div>
-				</div>
-			</div>
-		</div>
-		<div class="content">
-			<div class="content_resize"> 
-				<img src="images/skptesting.jpg" alt="image" class="ctop" height="300" width="890">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="SwissKitePower · bachelor thesis documentation, 2013.">
+<title>SwissKitePower</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="main">
+<header class="site-head">
+  <div class="wrap head-inner">
+    <p class="brand"><a href="index.html">SwissKitePower</a></p>
+    <a class="back" href="https://espadaser.github.io/">← Project index</a>
+    <nav class="nav" aria-label="Proyecto">
+      <a href="index.html">Home</a>
+      <a href="fhnw.html">FHNW</a>
+      <a href="p1.html">Power Line</a>
+      <a href="p2.html" class="active">First Simulation</a>
+      <a href="p3.html">Second Simulation</a>
+      <a href="p4.html">Validation</a>
+      <a href="uc3m.html">UC3M</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="content_resize"> 
+				<img src="images/skptesting.jpg" alt="SwissKitePower field work" class="ctop" height="300" width="890">
 				<div class="article">
 					<h2><span>First simulation of the power flow</span></h2>
-					<p>In order to help to understand what happens with the power flows of a single kite ground station, 
-					a simplified simulation with Matlab Simulink was made. This will help to understand how the electrical 
-					devices work and what their expected values for testing are. <br>
-					<br>
-					It is important to clarify that this simulation does not have the purpose to show the power on absolutely
-					all of the elements involved in the ground station. It only focuses on the main elements.<br>
-					<br>
-					The main elements considered in the simulation are: 
-					<br>
-					-	Electrical Synchronous Motor
-					<br>
-					-	DC Bus with storage (Battery)
-					<br>
-					-	Grid / Generator
-					<br>
-					-	Braking resistor<br>
-					<br>
-					Notice that for example some elements like the inverter/rectifier are not there, the reason of this is that we 
-					only focus on the way the power flow through the system itself. 
-					As an input we have a squared wave, which is not exactly real, but it is good enough for the initial purpose of 
-					the simulation.<br>
-					<br>
-					For a more in-depth purpose the second simulation was done, taking care about more elements, and the kind of 
-					energy that is flowing through them. <br>
-					<br>
-					</p>
-					<img src="images/p2.png" alt="image" class="ctop" style="margin-bottom:10px" >
+					<p>To help understand the power flows of a single-kite ground station, I built a simplified simulation in MATLAB/Simulink. It helped me understand how the electrical devices worked and what values to expect during testing.</p>
+<p>The simulation was not intended to show every element of the ground station; it focused on the main ones: the electrical synchronous motor, the DC bus with battery storage, the grid/generator and the braking resistor. The inverter/rectifier, for example, was not modelled because the goal was to study how power flows through the system itself.</p>
+<p>The input was a square wave, which is not fully realistic but sufficient for the initial purpose. A second simulation was later run with more elements and with the different kinds of energy flowing through them.</p>
+<img src="images/p2.png" alt="SwissKitePower field work" class="ctop" style="margin-bottom:10px" >
 				</div>
 			</div>
         </div>
 		
 		<div class="fbg">
 			<div class="fbg_resize">
-				<div class="col c1">
-					<h2>About SwissKitePower</h2>
-					<a href="http://www.swisskitepower.ch/"><img src="images/skplogo.jpg" alt="pix" height="93" border="0" width="93"></a>
-					<p>The <strong>SwissKitePower</strong> project is a
+  <div class="about-skp">
+    <h2>About SwissKitePower</h2>
+    <div class="skp-row">
+      <a href="https://www.swisskitepower.ch/"><img src="images/skplogo.jpg" alt="Logo rojo de SwissKitePower"></a>
+      <p>The <strong>SwissKitePower</strong> project is a
 						multidisciplinary research and development effort aimed at
 						creating a totally new device which can harness wind
 						energy at high altitudes. The winds at altitude are
 						stronger and more consistent than those at the ground and
 						represent an enormous potential source of renewable
 						energy.<br>
-						<a title="Approach" href="http://www.swisskitepower.ch/about-3/kite-power/">More about this approach can be found here.</a>
-					</p>
-				</div>
-				<div class="col c3">
-					<h2>University</h2>
-					<a href="http://www.fhnw.ch/"><img alt="fhnwlogo" src="images/fhnwlogo.jpg" height="93" border="0" width="161"></a>
-				</div>
-				<div class="clr"></div>
-			</div>
-		</div>
-  
-		<div class="footer">
-			<div class="footer_resize">
-				<p class="lf">Sergio Espada Rubio <b>@ 2013</b></p>
-			    <ul class="fmenu">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="fhnw.html">FHNW</a></li>
-					<li><a href="p1.html">Power Line</a></li>
-					<li class="active"><a href="p2.html">First Simulation</a></li>
-			    </ul>
-				
-				<ul class="fmenu">
-					<li><a href="p3.html">Second Simulation</a></li>
-					<li><a href="p4.html">Validation</a></li>
-					<li><a href="uc3m.html">UC3M</a></li>
-					<li><a href="contact.html">Contact</a></li>
-			    </ul>
-				
-			<div class="clr"></div>
-			</div>
-		</div>
-	</div>
-		
-	</body>
-	
+						<a title="Approach" href="https://www.swisskitepower.ch/about-3/kite-power/">More about this approach can be found here.</a></p>
+    </div>
+  </div>
+  <div class="about-uni">
+    <h2>University</h2>
+    <a href="https://www.fhnw.ch/"><img src="images/fhnwlogo.jpg" alt="Logo de FHNW"></a>
+  </div>
+</div>
+</div>
+</main>
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>SwissKitePower · 2013</span>
+    <a href="https://espadaser.github.io/">← Project index</a>
+  </div>
+</footer>
+</div>
+</body>
 </html>

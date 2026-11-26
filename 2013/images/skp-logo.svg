@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="SwissKitePower foil kite">
+<g fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 28C9 14 39 12 44 26"/>
+  <path d="M8 32C13 20 35 18 41 30"/>
+  <path d="M5 28 8 32M44 26 41 30"/>
+  <path d="M14 18.5 16.5 23.5M22 15.5 23 21M30 15.5 29 21M37 18.5 35 24.5"/>
+  <g stroke-width="1.6">
+    <path d="M8 31 24 43M16 23 24 43M32 22 24 43M41 30 24 43"/>
+  </g>
+</g>
+</svg>

@@ -21,8 +21,10 @@ a:focus-visible{outline:2px solid var(--green-dark);outline-offset:3px}
 
 .site-head{background:var(--green);color:#fff;padding:18px 0 14px}
 .head-inner{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
-.brand{font-size:1.55rem;font-weight:700;line-height:1.1;margin:0}
-.brand a{color:#fff;text-decoration:none}
+.brand{display:flex;align-items:center;gap:14px;margin:0;font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif}
+.brand-mark{width:48px;height:48px;flex:0 0 48px}
+.brand a{display:block;color:#fff;text-decoration:none;font-size:2rem;font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.brand small{display:block;font-family:Arial,Helvetica,sans-serif;font-size:.72rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:#eaf3df;margin-top:7px}
 .back{font-size:.8rem;color:#eaf3df;text-decoration:none;margin-left:auto}
 .back:hover{text-decoration:underline}
 .nav{width:100%;display:flex;justify-content:center;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
@@ -88,7 +90,8 @@ figcaption{font-size:.82rem;color:var(--muted);margin-top:6px}
   h1{font-size:1.5rem}
 }
 @media(max-width:480px){
-  .brand{font-size:1.3rem}
+  .brand-mark{width:42px;height:42px;flex-basis:42px}
+  .brand a{font-size:1.5rem}
   .wrap{width:calc(100% - 20px)}
   .nav a{font-size:.8rem;padding:5px 10px}
 }

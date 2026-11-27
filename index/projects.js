@@ -8,6 +8,7 @@
      scope       "Profesional" o "Personal" (controla el filtro principal)
      description texto corto (1-2 frases)
      icon        kite, sun, signal, grid, dice, volume, cards
+     iconSrc     ruta a un SVG propio (opcional, sustituye a icon)
      tags        array de etiquetas (máx. ~3)
      link        ruta relativa desde la raíz, o null si no hay web
      color       color de acento (hex) para icono, línea y enlace
@@ -20,6 +21,7 @@ const PROJECTS = [
     scope: "Profesional",
     description: "Proyecto colaborativo de investigación y desarrollo de energía eólica mediante cometas.",
     icon: "kite",
+    iconSrc: "2013/images/skp-logo.svg",
     tags: ["Eólica", "I+D"],
     link: "2013/index.html",
     color: "#38bdf8"
